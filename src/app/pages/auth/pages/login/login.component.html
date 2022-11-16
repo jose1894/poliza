@@ -1,0 +1,150 @@
+<div fxLayout="row" fxFlex id="login">
+    <div
+      fxFlex.xs="100"
+      fxLayout.xs="row"
+      fxFlex.sm="100"
+      fxFlex.md="40"
+      fxFlex.lg="33.3"
+      fxFlex.xl="33.3"
+      fxLayout="column"
+      fxLayoutAlign="start"
+    >
+      <div
+        id="login-intro"
+        fxFlex
+        [fxShow.md]="noVisible"
+        [fxShow.lg]="noVisible"
+        [fxShow.xl]="noVisible"
+      >
+        <mat-progress-bar
+          *ngIf="showLoadBar"
+          class="loading-bar"
+          color="accent"
+          mode="indeterminate"
+        ></mat-progress-bar>
+      </div>
+  
+      <div
+        id="login-form-wrapper"
+        style="overflow: -webkit-paged-x; height: 100%;"
+      >
+        <div id="login-form">
+          <div class="logo">
+            <!-- <img src="{{ logoBrickcontrol }}" alt="logo" /> -->
+            <label>Welcome back</label>
+            <span>Sign into your account here</span>
+          </div>
+  
+          <form name="loginForm" [formGroup]="loginForm" novalidate>
+            <mat-form-field>
+              <input
+                autocomplete="nope"
+                type="email"
+                autocorrect="off"
+                autocapitalize="off"
+                matInput
+                placeholder="Email"
+                formControlName="email"
+              />
+              <mat-error *ngIf="loginFormErrors.email.required">
+                Email is required
+              </mat-error>
+              <mat-error
+                *ngIf="
+                  !loginFormErrors.email.required && loginFormErrors.email.email
+                "
+              >
+                Please enter a valid email address
+              </mat-error>
+            </mat-form-field>
+  
+            <mat-form-field>
+              <input
+                autocomplete="nope"
+                matInput
+                type="password"
+                placeholder="Password"
+                formControlName="password"
+              />
+              <mat-error *ngIf="loginFormErrors.password.required">
+                Password is required
+              </mat-error>
+            </mat-form-field>
+  
+            <div>
+              <button
+                mat-raised-button
+                color="primary"
+                class="submit-button"
+                aria-label="LOGIN"
+                (click)="login()"
+                [disabled]="loginForm.invalid"
+              >
+                LOGIN
+              </button>
+            </div>
+          </form>
+          <div
+            class="remember-forgot-password"
+            fxLayout="row"
+            fxLayout.xs="column"
+            fxLayoutAlign="space-between center"
+            [formGroup]="loginForm"
+          >
+            <mat-checkbox class="remember-me" formControlName="rememberUser">
+              Remember Me
+            </mat-checkbox>
+            <a class="forgot-password color-primario">
+                          Forgot Password?
+            </a>
+          </div>
+  
+          <div class="register" fxLayout="row" fxLayoutAlign="center center">
+              <span class="text">Don't have an account?</span>
+              <a class="link color-primario" [routerLink]="'/auth/register'">Sign up</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div
+      [fxShow.xs]="noVisible"
+      [fxShow.sm]="noVisible"
+      fxFlex.md="60"
+      fxFlex.lg="66.6"
+      fxFlex.xl="66.6"
+      fxLayout="column"
+    >
+      <div
+        id="login-intro2"
+        fxFlex
+        [fxShow.xs]="noVisible"
+        [fxShow.sm]="noVisible"
+      >
+        <mat-progress-bar
+          *ngIf="showLoadBar"
+          class="loading-bar"
+          color="accent"
+          mode="indeterminate"
+        ></mat-progress-bar>
+      </div>
+  
+      <div
+        fxLayout="column"
+        fxLayoutAlign="center center"
+        style="
+          height: 100%;
+          align-items: center;
+          justify-content: center;
+          background-image: linear-gradient(#cbd2e0, #f1f1f1);
+        "
+      >
+        <img
+        class="image-marketing"
+          src="/assets/imag/imag-principal.jpg"
+          alt="title"
+        />
+      </div>
+    </div>
+  </div>
+  

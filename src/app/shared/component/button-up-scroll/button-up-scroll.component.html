@@ -1,0 +1,10 @@
+<button
+  mat-fab
+  color="primary"
+  id="fab-button-custom"
+  *ngIf="scrollHiddenToolbar$ | async"
+  (click)="showrHeader()"
+>
+  <mat-icon class="notranslate s-24">keyboard_arrow_up</mat-icon>
+</button>
+

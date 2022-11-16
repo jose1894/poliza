@@ -1,0 +1,364 @@
+@import "src/@BCTheme/scss/BCTheme.scss";
+
+.warehouse {
+  width: 100%;
+  // @include height-with-header();
+  height: 100%;
+  display: grid;
+  grid-template-columns: 30% 69%;
+  grid-template-rows: 100%;
+  grid-template-areas: "listview content";
+  grid-column-gap: 5px;
+  //   padding: 10px;
+
+  .list-view {
+    // background-color: red;
+    // max-height: 100vh;
+    // @include height-with-header();
+    height: 100%;
+    grid-area: listview;
+
+    .list-view-header {
+      height: 64px;
+    }
+
+    .list-view-content {
+      padding: 0 15px;
+      padding-bottom: 10px;
+      overflow: overlay;
+      height: calc(100% - 64px);
+      // @include height-with-header(" - 64px");
+
+      mat-list {
+        padding: 0;
+
+        .list-view-item-wrapper {
+          &:not(:last-child) {
+            margin-bottom: 10px;
+          }
+
+          // .list-view-item {
+          // }
+        }
+      }
+    }
+
+    @-moz-document url-prefix() {
+      .list-view-content {
+        overflow: auto;
+      }
+    }
+
+    &.has-apply-filters {
+      .list-view-header {
+        height: 115px;
+      }
+
+      .list-view-content {
+        @include height-with-header(" - 115px");
+      }
+    }
+  }
+
+  .content {
+    @include height-with-header();
+    width: calc(100% - 10px);
+    margin-right: 5px;
+    grid-area: content;
+
+    /* View Detail */
+    div[class*="-detail"] {
+      @include height-with-header();
+
+      div[class*="-detail-container"] {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        .toolbar-detail-actions-buttons {
+          height: 64px;
+          mat-toolbar {
+            background-color: transparent;
+            padding: 0 !important;
+            .toolbar-action-buttons-container {
+              width: 100%;
+            }
+          }
+        }
+
+        div[class*="-detail-content"] {
+          @include height-with-header(" - 64px");
+          overflow: auto;
+          padding-right: 5px;
+
+          .entity-header-info {
+            padding: 0px 10px !important;
+
+            mat-card-content {
+              padding: 10px;
+
+              .title {
+                font-size: 1.3em;
+                font-family: "Myriad Pro";
+                font-weight: bold;
+                word-wrap: break-all;
+                display: inline-block;
+                overflow-wrap: anywhere;
+              }
+
+              .subtitle {
+                font-size: 1.1em;
+                font-family: "Myriad Pro";
+                font-weight: lighter;
+                word-wrap: break-all;
+                display: inline-block;
+                overflow-wrap: anywhere;
+              }
+
+              .key {
+                font-size: 1.1em;
+                font-family: "Myriad Pro Condensed";
+                font-weight: bold;
+              }
+              .value {
+                font-size: 1.22em;
+                font-family: "Myriad Pro";
+              }
+            }
+          }
+
+          .header-info-xs {
+            padding: 10px;
+            color: #5b6a83;
+          }
+
+          .contact-info {
+            mat-icon {
+              color: #ff5625;
+            }
+          }
+
+          .location,
+          .project,
+          .ative,
+          .contact,
+          .projectMain,
+          .projectDates {
+            padding: 0px;
+            margin: 8px;
+
+            mat-card-title {
+              border-bottom: 1px solid #e9eff7;
+              padding: 10px;
+              color: #a2acbe;
+              font-size: 14px;
+              margin-bottom: 0;
+            }
+
+            mat-icon {
+              color: #b4c4d7;
+            }
+          }
+
+          .projectDates {
+            input:disabled {
+              background-color: #fff !important;
+            }
+            input {
+              padding: 0 2px;
+            }
+            .mat-input-element:disabled {
+              color: #5b6a83 !important;
+            }
+          }
+
+          .card-group {
+            mat-card {
+              margin: 8px;
+
+              mat-icon {
+                color: #b4c4d7;
+              }
+            }
+          }
+        }
+      }
+    }
+    /* View Edit  */
+    div[class*="-edit-page"] {
+      @include height-with-header();
+
+      div[class*="-edit-container"] {
+        width: 100%;
+        // height: 102%;
+        overflow: auto;
+
+        .toolbar-edit-actions-buttons {
+          height: 64px;
+          mat-toolbar {
+            background-color: transparent;
+            .toolbar-action-buttons-container {
+              width: 100%;
+              .showListBtn {
+                background-color: white !important;
+                border-radius: 5px;
+              }
+            }
+          }
+        }
+
+        div[class*="-edit-content"] {
+           @media (max-width: 959px) {
+             @include height-with-header(" - 83px");
+           }
+
+           @media(min-width: 960px) {
+            @include height-with-header(" - 64px");
+           }
+
+          padding-right: 5px;
+          overflow: hidden;
+
+          .tabs-content {
+            @include height-with-header(" - 64px - 90px");
+          }
+
+          .entity-header {
+            max-height: 100%;
+            min-height: 50px;
+            color: #fff;
+            font-weight: 700;
+            padding: 10px;
+            font-family: "Myriad Pro";
+            font-weight: bold;
+            font-size: 12pt;
+            border-radius: 4px;
+
+            img {
+              width: 35px;
+              height: 35px;
+              border-radius: 50%;
+              margin-right: 10px;
+              background: #fff;
+            }
+            span.title {
+              word-wrap: break-all;
+              display: inline-block;
+              overflow-wrap: anywhere;
+            }
+
+            .bubble_chart {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              height: 100%;
+              margin-right: 4px;
+            }
+          }
+
+          .scroll-content {
+            height: 100%;
+            overflow: auto;
+            padding-bottom: 10px;
+          }
+        }
+      }
+    }
+  }
+
+
+  &.hide-list-view {
+    grid-column-gap: 0px;
+    grid-template-columns: 100%;
+    grid-template-areas: "content";
+    .content {
+      display: block;
+      width: 100%;
+      padding: 0 10px;
+    }
+
+    .list-view {
+      display: none;
+    }
+  }
+
+  /* Cuanado la pantalla este en FullSize (Sin Header) */
+  &.fullsize {
+    // @include height-without-header();
+
+    .list-view {
+      // @include height-without-header();
+
+      .list-view-content {
+        // @include height-without-header(" - 64px");
+      }
+
+      &.has-apply-filters {
+        .list-view-content {
+          @include height-without-header(" - 115px");
+        }
+      }
+    }
+
+    .content {
+      @include height-without-header();
+
+      div[class*="-detail"],
+      div[class*="-edit-page"] {
+        @include height-without-header();
+        div[class*="-detail-container"],
+        div[class*="-edit-container"] {
+          div[class*="-detail-content"],
+          div[class*="-edit-content"] {
+            @include height-without-header(" - 64px");
+          }
+
+          div[class*="-edit-content"] .tabs-content {
+            @include height-without-header(" - 64px");
+          }
+        }
+      }
+    }
+  }
+
+  /* MediaQuery cuando la pantalla sea para dispositivos moviles */
+  @media screen and (max-width: 1024px) {
+    grid-template-columns: 100%;
+    grid-template-areas: "listview";
+
+    .list-view {
+      display: block;
+    }
+    .content {
+      display: none;
+    }
+
+    &.see-actions-pages {
+      grid-template-areas: "content";
+
+      .content {
+        display: block;
+        width: 100%;
+        padding: 0 10px;
+      }
+
+      .list-view {
+        display: none;
+      }
+    }
+  }
+
+  // @media screen and (min-width:600px) and (max-width: 850px){
+  //   grid-template-columns: 40% 59%;
+  // }
+
+  @media screen and (min-width: 1333px) {
+    // .page {
+    grid-template-columns: 400px calc(100% - 400px);
+
+    .content {
+      width: calc(100% - 20px);
+    }
+    // }
+  }
+}

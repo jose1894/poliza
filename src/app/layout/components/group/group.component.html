@@ -1,0 +1,13 @@
+<ng-container>
+    <div class="group-title">
+        <span class="hint-text">{{ item.title }}</span>
+    </div>
+
+    <div class="group-items">
+        <ng-container *ngFor="let item of item.children">
+            <!-- <app-group *ngIf="item.type == 'group'" [item]="item"></app-group>
+            <app-collapsable *ngIf="item.type == 'collapsable'" [item]="item"></app-collapsable>
+            <app-item *ngIf="item.type == 'item'" [item]="item"></app-item> -->
+        </ng-container>
+    </div>
+</ng-container>

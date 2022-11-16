@@ -1,0 +1,55 @@
+@import "@angular/material/theming";
+
+:host {
+  .folded:not(.unfolded) & {
+    .nav-link {
+      > span {
+        opacity: 0;
+        transition: opacity 200ms ease;
+      }
+    }
+
+    &.open {
+      .children {
+        display: none !important;
+      }
+    }
+  }
+
+  .unfolded:not(.folded) & {
+    .nav-link {
+      > .nav-link-title {
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+
+  .nav-link {
+    background-color: white;
+    color: #5b6a83 !important;
+
+    .collapsable-arrow {
+      transition: transform 0.3s ease-in-out, opacity 0.25s ease-in-out 0.1s;
+      transform: rotate(0);
+    }
+  }
+
+  > .children {
+    overflow: hidden;
+  }
+
+  &.open {
+    > .nav-link {
+      @include mat-elevation(1);
+      .collapsable-arrow {
+        transform: rotate(90deg);
+      }
+    }
+  }
+}
+
+.children {
+  display: block;
+  transition: all 300ms;
+}

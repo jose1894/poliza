@@ -1,0 +1,23 @@
+@import "_breakpoints.scss";
+
+$TOOLBAR_HEIGHT: 64px;
+$TABS_HEIGHT: 45px;
+$SIDENAV_WIDTH_FOLDED: 64px;
+$SIDENAV_WIDTH_UNFOLDED: 310px;
+$HEIGHT: calc(var(--vh, 1vh) * 100);
+
+@mixin height-with-header($value: '') {
+  height: calc(100vh - #{$TABS_HEIGHT} - #{$TOOLBAR_HEIGHT} #{$value});
+  height: calc(#{$HEIGHT} - #{$TABS_HEIGHT} - #{$TOOLBAR_HEIGHT} #{$value});
+  width: 100%;
+}
+
+@mixin height-without-header($value: '') {
+  height: calc(100vh #{$value});
+  height: calc(#{$HEIGHT} #{$value});
+}
+
+
+@include media-breakpoint("xs"){
+    $TOOLBAR_HEIGHT: 55px
+}
