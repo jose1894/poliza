@@ -1,0 +1,30 @@
+*::-webkit-scrollbar {
+  width: 7px;
+  // height: 7px;
+}
+
+*::-webkit-scrollbar:horizontal {
+  height: 7px;
+}
+
+*::-webkit-scrollbar-thumb {
+  margin: 5px;
+  background-color: #999;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+
+  &:hover {
+    background-color: rgb(121, 121, 121);
+    transform: scale(1.2);
+  }
+}
+
+*::-webkit-scrollbar-button:start:decrement,
+*::-webkit-scrollbar-button:end:increment {
+  height: 5px;
+  display: block;
+}
+
+* {
+  scrollbar-color: #999 transparent;
+}

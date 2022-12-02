@@ -8,12 +8,14 @@ import {
   ViewChild} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Show } from '@BCTheme/animations/show.animation';
+import { LayoutService } from '@BCTheme/services/layout.service';
 import { AuthService } from '@Core/services/auth.service';
 import { 
   NetworkService, 
   StatusConnection } from '@Core/services/network.service';
 import { UserPersonalConfigurationComponent } from '@Pages/security/user-personal-configuration/user-personal-configuration.component';
 import { Observable } from 'rxjs';
+import { ApiService } from 'src/app/services/api/api.service';
 import { KeyStorage, StorageService } from 'src/app/services/storage.service';
 
 @Component({
@@ -43,13 +45,15 @@ export class ToolbarComponent implements OnInit {
   //@ts-ignore
   @ViewChild('userId') userIdRef: ElementRef<HTMLElement>;
 
-  constructor(
+  constructor(   
+    private ngZone: NgZone,
+    private _matDialog: MatDialog,    
+    private _cd: ChangeDetectorRef,
+    private _apiService: ApiService,
+    private _authService: AuthService,
+    private _layoutService: LayoutService,
     private _storageService: StorageService,
     private _networkService: NetworkService,
-    private ngZone: NgZone,
-    private _cd: ChangeDetectorRef,
-    private _authService: AuthService,
-    private _matDialog: MatDialog,
   ) { 
     this.isOnline$ = this._networkService.onIsOnline();
   }
@@ -82,7 +86,9 @@ export class ToolbarComponent implements OnInit {
         }
   }
 
-  toggleSidenavOpen(){}
+  toggleSidenavOpen(){
+    this._layoutService.openSidenav();
+  }
 
   toggleOptionChat(){}
 
@@ -104,6 +110,8 @@ export class ToolbarComponent implements OnInit {
     }    
   }
 
-  logout() {}
+  logout(): void {
+    this._apiService.logout();
+  }
 
 }

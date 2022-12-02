@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 import { NotifyService } from '@Core/services/notify.service';
 import { AuthService } from '@Core/services/auth.service';
 import { flatMap } from 'lodash';
+import { ThemeService } from '@BCTheme/services/theme.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,7 @@ export class ApiService {
     private _router: Router,
     private _httpClient: HttpClient,
     private _authService: AuthService,
+    private _themeService: ThemeService,
     private _notifyService: NotifyService,
     private _storageService: StorageService) { }
 
@@ -118,12 +120,22 @@ export class ApiService {
       );
     } else {
       this.logout();
-      console.log('logout')
       return of(this._router.parseUrl('/auth/login'));
     }
   }
 
-  logout() { }
+   /**
+   * @name logout
+   * @return {void}
+   */
+    public logout(withNavigate: boolean = true): void {
+    this._authService.userLogged = null;
+    this._cleanLocalStorageForAuth();
+
+    if (withNavigate) this._router.navigate(['auth/login']);
+    // this._storageService.setValue(KeyStorage.USER_DATA, false);
+    this._themeService.theme = this._themeService.getColorThemeDefault();
+  }
 
   public loginByApiKey(): Observable<boolean> {
     return this.get('auth/profile').pipe(
@@ -132,23 +144,11 @@ export class ApiService {
         return this.processLogin(res);
       })
     );
-
-    /*if (this._networkService.connectionStatus === StatusConnection.ONLINE) {
-      return this.get('/Login/LoginBrickControlByApiKey').pipe(
-        map((res: BusinessResult) => {
-          return this._processLogin(res, true, false);
-          // return res['isSuccess'];
-        })
-      );
-    } else {
-      return of(false);
-    }*/
   }
 
   processLogin(user: any): boolean {
     try {
       this._authService.userLogged = user;
-      //this._storageService.setValue(KeyStorage.IS_LOGGED_IN, true);
       return true;
 
     } catch (error) {

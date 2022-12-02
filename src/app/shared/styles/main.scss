@@ -1,0 +1,29 @@
+@import "./partials/common";
+@import "./partials/scrollbars";
+@import "./partials/unknowm";
+@import "src/@BCTheme/scss/BCTheme.scss";
+
+*:not(mat-icon) {
+  font-family: "Myriad Pro";
+  text-rendering: optimizeLegibility;
+}
+
+html,
+body {
+  height: $HEIGHT;
+  width: 100vw;
+  background-color: #ebebeb;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden !important;
+  // overflow: ;
+  // font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+.backdrop-gallery{
+  background-color: #000000bb;
+}

@@ -18,6 +18,6 @@ export class NavigationComponent implements OnInit {
 
   ngOnInit(): void {
     //console.log('NavigationComponent')
-    //console.log(this.navigation)
+    console.log(this.navigation)
   }
 }

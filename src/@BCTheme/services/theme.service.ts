@@ -38,9 +38,14 @@ export class ThemeService {
   }
 
   public getColorThemeDefault(): Color {
+    let colorInit = new Color();
+    colorInit.id = 'trq';
+    colorInit.name = 'Turquesa';
+    colorInit.theme = 'turquoise-theme'
+    colorInit.color = '#009688';
     return this.getColorsAvailable().find((color) => {
       return color.theme === environment.themeDefault;
-    });
+    }) || colorInit;
   }
 
   private _setColorMeta(color: string) {
@@ -48,7 +53,7 @@ export class ThemeService {
       'meta[name=theme-color]'
     );
 
-    metaThemeColor.setAttribute('content', color);
+    metaThemeColor?.setAttribute('content', color);
   }
 
   private _setThemeBody(themeName: string) {

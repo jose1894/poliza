@@ -1,5 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
-//@import "@BCTheme/scss/core.scss";
-//@import "@angular/material/theming";
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@import "@BCTheme/scss/core.scss";
+
+// Import theming functions
+@import "@angular/material/theming";
+
+.content-dialog {
+  .mat-expansion-panel-body {
+	 padding: 0px !important;
+  }
+}
+@import "app/shared/styles/main.scss";
