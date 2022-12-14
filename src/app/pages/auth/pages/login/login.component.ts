@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginService, LoginInterface } from '@Core/services/users/login.service';
+import { LoginService } from '@Core/services/users/login.service';
 import { ApiService } from 'src/app/services/api/api.service';
 import { KeyStorage, StorageService } from 'src/app/services/storage.service';
 
@@ -49,11 +49,11 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   if (this._storageService.getValue(KeyStorage.TOKEN)) {
-       console.log('existe tokennnn')
+    if (this._storageService.getValue(KeyStorage.TOKEN)) {
+      console.log('existe tokennnn')
       //this._apiService.loginByApiKey();
     }
-    
+
   }
 
   private _onLoginFormValuesChanged(): void {
@@ -75,11 +75,11 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    const {rememberUser, ...data} = this.loginForm.value;
-    this._loginService.loginUser(data).subscribe((resp:any) => {
+    const { rememberUser, ...data } = this.loginForm.value;
+    this._loginService.loginUser(data).subscribe((resp: any) => {
       const { accessToken, user } = resp;
       const dataUser = this._apiService.processLogin(user);
-      if(dataUser) {
+      if (dataUser) {
         this._storageService.setValue(
           KeyStorage.TOKEN,
           accessToken,
@@ -87,10 +87,26 @@ export class LoginComponent implements OnInit {
         );
         this.loginForm.reset();
         this._router.navigate(['/']);
-      } 
+      }
     }, error => {
       console.log(error);
-    });    
+    });
+  }
+
+  forgotPassword() {
+    const control = this.loginForm.get('email');
+    if (control?.value) {
+      this._loginService.forgotPassword(control.value).subscribe(
+        (resp: any) => {
+          console.log(resp)
+        }
+      )
+
+    } else {
+      this.loginForm?.get('email')?.markAsTouched();
+      this.loginFormErrors['email'] = control?.errors || '';
+      console.log('reee')
+    }
   }
 
 }

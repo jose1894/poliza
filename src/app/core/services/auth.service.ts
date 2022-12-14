@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +35,25 @@ export class AuthService {
 
   public set isLoggedIn(isLoggedIn) {
     this._isLoggedIn$.next(isLoggedIn);
+  }
+
+  public getPermission(permissionId: string) {
+    const permission = this.userLogged.loginResultPermissions.find(
+      (permission: any) => permission.readonly_permissionId === permissionId
+    );
+    console.log(permission, 'permisosss')
+
+    return permission;
+  }
+
+  public onGetPermission(
+    permissionId: string
+  ): Observable<any> {
+    return this.onUserLogged().pipe(
+      map((loginResult: any) =>
+        loginResult ? this.getPermission(permissionId) : null
+      )
+    );
   }
 
 }

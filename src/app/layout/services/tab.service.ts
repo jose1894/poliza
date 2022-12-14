@@ -333,7 +333,7 @@ export class TabService {
   private _getItemNavigationByURL(
     itemsNavigation: ItemRoute[],
     pathURL: string
-  ): ItemRoute | null {
+  ): ItemRoute {
     for (const item of itemsNavigation) {
       if (item.type === 'collapsable') {
         if (item.children) {
@@ -354,7 +354,7 @@ export class TabService {
         }
       }
     }
-
+    //@ts-ignore
     return null;
   }
 

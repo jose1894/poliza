@@ -1,0 +1,19 @@
+<div
+  class="page"
+  [ngClass]="{
+    fullsize: scrollHiddenToolbar$ | async,
+    'see-actions-pages': seeContentPages()
+  }"
+>
+<div class="list-view">
+    <div class="list-view-header"></div>
+    <div class="list-view-content" appScrollHiddenHeader>
+        <mat-list>
+            <p>sss</p>
+        </mat-list>
+    </div>
+</div>
+<div class="content">
+    <static-router-outlet></static-router-outlet>
+  </div>
+</div>

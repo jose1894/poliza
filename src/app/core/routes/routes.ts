@@ -2,30 +2,20 @@ import { ItemRoute } from '@Core/models/general/navigation/item-route.interface'
 
 export const ROUTES: ItemRoute[] = [
   {
-    id: 'B01',
-    title: 'My BrickControl',
+    id: 'P01',
+    title: 'Configuration',
     type: 'collapsable',
-    icon: 'shopping_cart',
-    disabled: true,
+    icon: 'settings',
     children: [
       {
-        id: 'B010101',
-        title: 'My subscription',
+        id: 'PS010101',
+        title: 'Póliza',
         type: 'item',
-      },
-      {
-        id: 'B010103',
-        title: 'Invoicing information',
-        type: 'item',
-      },
-      {
-        id: 'B010104',
-        title: 'Invoice list',
-        type: 'item',
+        url: ['poliza']
       },
     ],
   },
-  {
+  /*{
     id: 'B02',
     title: 'Security',
     type: 'collapsable',
@@ -698,5 +688,5 @@ export const ROUTES: ItemRoute[] = [
         ],
       },
     ],
-  },
+  },*/
 ];

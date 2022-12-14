@@ -3,7 +3,7 @@ import { AfterViewInit, Component, ElementRef, NgZone, OnChanges, OnDestroy, OnI
 import { FadeOut } from '@BCTheme/animations/FadeOut.animation';
 import { MediaQueryService } from '@BCTheme/services/media-query.service';
 import { TabNavigation } from '@Core/models/general/navigation/tab-navigation.interface';
-import { Observable, Subscription } from 'rxjs';
+import { combineLatest, map, Observable, Subscription } from 'rxjs';
 import { TabService } from '../../services/tab.service';
 
 @Component({
@@ -22,7 +22,7 @@ export class NavbarComponent
 
   @ViewChild('tabContent', { read: ElementRef })
   private _tabContent: ElementRef<HTMLElement> | undefined;
-  //private _subscriptionOnTab: Subscription;
+  private _subscriptionOnTab: Subscription;
 
   constructor(
     private _tabService: TabService,
@@ -30,52 +30,52 @@ export class NavbarComponent
     private ngZone: NgZone
   ) {
     this.isMobileElseDisabled$ = this._mediaQueryService.onIsMediaMobile();
-    // this._subscriptionOnTab = combineLatest([
-    //   this._tabService.onTabs(),
-    //   this._tabService.onSelectedTabId(),
-    // ])
-    //   .pipe(map(([tabs, selectedId]) => ({ tabs, selectedId })))
-    //   .subscribe(({ tabs, selectedId }) => {
-    //     if (tabs.length === 0) {
-    //       this.tabs = [];
-    //     } else if (
-    //       this.tabs.length !== tabs.length &&
-    //       tabs[tabs.length - 1]?.title
-    //     ) {
-    //       const lengthActuallyTabs = this.tabs.length;
-    //       const lengthFutureTabs = tabs.length;
-    //       this.tabs = tabs;
-    //       if (lengthFutureTabs > lengthActuallyTabs) {
-    //         this.showBtnScroll();
-    //       }
-    //     }
+    this._subscriptionOnTab = combineLatest([
+      this._tabService.onTabs(),
+      this._tabService.onSelectedTabId(),
+    ])
+      .pipe(map(([tabs, selectedId]) => ({ tabs, selectedId })))
+      .subscribe(({ tabs, selectedId }) => {
+        if (tabs.length === 0) {
+          this.tabs = [];
+        } else if (
+          this.tabs.length !== tabs.length &&
+          tabs[tabs.length - 1]?.title
+        ) {
+          const lengthActuallyTabs = this.tabs.length;
+          const lengthFutureTabs = tabs.length;
+          this.tabs = tabs;
+          if (lengthFutureTabs > lengthActuallyTabs) {
+            this.showBtnScroll();
+          }
+        }
 
-    //     if (this.selectedId !== selectedId) {
-    //       // const tab = this.tabs.find((tab) => tab.id === selectedId);
-    //       // if (tab) {
-    //       this.selectedId = selectedId;
-    //       this.ngZone.runOutsideAngular(() => {
-    //         setTimeout(() => {
-    //           const tabDOM = document.querySelector(
-    //             `[data-idtab="${selectedId}"]`
-    //           );
-    //           // console.log(tabDOM);
-    //           if (tabDOM && tabDOM.scrollIntoView) {
-    //             if (this.isShowScroll()) {
-    //               tabDOM.scrollIntoView(false);
-    //             }
-    //           }
-    //         }, 100);
-    //       })
-    //       // }else{
-    //       //   this.selectedId = null;
-    //       // }
-    //     }
-    //   });
+        if (this.selectedId !== selectedId) {
+          // const tab = this.tabs.find((tab) => tab.id === selectedId);
+          // if (tab) {
+          this.selectedId = selectedId;
+          this.ngZone.runOutsideAngular(() => {
+            setTimeout(() => {
+              const tabDOM = document.querySelector(
+                `[data-idtab="${selectedId}"]`
+              );
+              // console.log(tabDOM);
+              if (tabDOM && tabDOM.scrollIntoView) {
+                if (this.isShowScroll()) {
+                  tabDOM.scrollIntoView(false);
+                }
+              }
+            }, 100);
+          })
+          // }else{
+          //   this.selectedId = null;
+          // }
+        }
+      });
   }
 
   ngOnDestroy(): void {
-    //this._subscriptionOnTab.unsubscribe();
+    this._subscriptionOnTab.unsubscribe();
   }
 
   ngOnInit(): void {}

@@ -27,6 +27,8 @@ import { KeyStorage, StorageService } from 'src/app/services/storage.service';
 })
 export class ToolbarComponent implements OnInit {
 
+  public loginResultPermissions: any[] = [];
+
   public isOnline$: Observable<StatusConnection>;
 
   public user: any = null;
@@ -79,9 +81,14 @@ export class ToolbarComponent implements OnInit {
     if (this._authService.isLoggedIn ||
         this._storageService.getValue(KeyStorage.TOKEN)) {
           this._authService.onUserLogged().subscribe((user) =>{
+            this._loginResult = user;
+            /* Validation permits toolbar */
+            this.loginResultPermissions = !!this._loginResult
+              .loginResultPermissions
+              ? this._loginResult.loginResultPermissions
+              : [];
             this.userFirstLastName = `${user?.nombre || ''} ${user?.apellido || ''}`;
             this.user = user;
-            console.log(user)
           })
         }
   }
@@ -105,7 +112,7 @@ export class ToolbarComponent implements OnInit {
       });
   
       dialogRef.afterClosed().subscribe((result) => {
-        console.log(result);
+        //console.log(result);
       })
     }    
   }

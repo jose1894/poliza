@@ -1,0 +1,195 @@
+<mat-card id="item-listview">
+    <div fxLayout="row" class="card-inner">
+      <div fxFlex="25" class="left-wrapper">
+        <div fxLayout="column" fxFlexFill *ngIf="isCode">
+          <div
+            fxFlex="{{ flexHeightVal }}"
+            fxLayout="column"
+            fxLayoutAlign="center center"
+            class="image-wrapper"
+          >
+            <div
+              class="flip-container"
+              (click)="imageClick()"
+              [ngClass]="{ selected: checked }"
+            >
+              <div class="flipper">
+                <div
+                  class="front"
+                  [ngStyle]="{ 'padding-top': formato === 3 ? '4px' : '' }"
+                >
+                  <!-- se muestra la imagen sin el fondo primario este cambio depende del valor de la variable fondoPrimarioIcon -->
+                  <img
+                    *ngIf="mainImage !== 'icono' && !fondoPrimarioIcon"
+                    class="{{ styleFormat }}"
+                    [src]="mainImage"
+                  />
+  
+                  <!-- se muestra la imagen con el fondo primario este cambio depende del valor de la variable fondoPrimarioIcon -->
+                  <div
+                    class="avatar2-contact fondo-primario"
+                    *ngIf="mainImage !== 'icono' && fondoPrimarioIcon"
+                  >
+                    <div class="bubble_chart">
+                      <img [src]="mainImage" class="{{ styleFormat }}" />
+                      <mat-icon class="notranslate">{{ icon }}</mat-icon>
+                    </div>
+                  </div>
+  
+                  <!-- <img class="avatar2-contact fondo-primario" [src]="mainImage" *ngIf="mainImage != 'icono' &&  fondoPrimarioIcon"> -->
+                  <div
+                    class="avatar2-contact"
+                    [ngClass]="getClasses()"
+                    [style.backgroundColor]="avatarColor"
+                    *ngIf="mainImage === 'icono'"
+                  >
+                    <div class="bubble_chart">
+                      <mat-icon class="notranslate">{{ icon }}</mat-icon>
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="back fondo-primario {{ backFormat }}">
+                  <div class="back-title">
+                    <mat-icon class="notranslate">done</mat-icon>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            fxLayout="column"
+            fxLayoutAlign="center center"
+            fxFlex="20"
+            class="code-wrapper"
+            class="{{ tipoFormato }}"
+            *ngIf="(!isDatePicker && formato == 1) || formato == 3"
+          >
+            <div
+              style="
+                min-height: 20px;
+                text-align: center;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+                font-size: 10pt;
+                max-width: 100%;
+              "
+            >
+              {{ dataCode }}
+            </div>
+          </div>
+          <div
+            fxLayout="column"
+            fxLayoutAlign="center center"
+            fxFlex="20"
+            class="code-wrapper"
+            *ngIf="isDatePicker"
+          >
+            <input
+              autocomplete="nope"
+              style="
+                text-align: center;
+                background-color: transparent;
+                border: none;
+                color: #5b6a83;
+                font-family: 'Myriad Pro';
+                font-size: 11pt;
+              "
+              matInput
+              [matDatepicker]="pickerStartDate"
+              [(ngModel)]="dataCode"
+              name="date"
+              [disabled]="true"
+            />
+            <mat-datepicker #pickerStartDate></mat-datepicker>
+          </div>
+        </div>
+  
+        <div fxLayout="column" fxFlexFill *ngIf="!isCode">
+          <div
+            fxFlex="100"
+            fxLayout="column"
+            fxLayoutAlign="center center"
+            class="image-wrapper"
+          >
+            <img
+              (click)="imageClick()"
+              class="{{ styleFormat }}"
+              [src]="mainImage"
+            />
+          </div>
+        </div>
+      </div>
+  
+      <div fxFlex="75" class="right-wrapper">
+        <div fxLayout="column" style="height: 100%;">
+          <div class="text-truncate name color-primario">{{ dataTitle }}</div>
+          <div fxLayout="row" style="height: 100%;">
+            <div fxFlex="85" fxLayout="column" class="extra">
+              <div
+                fxLayout="row"
+                class="item"
+                *ngFor="let item of arrayContentData; let i = index"
+              >
+                <div *ngIf="item.iconValue != null">
+                  <mat-icon class="notranslate">{{ item.iconValue }}</mat-icon>
+                </div>
+                <div class="text-truncate" *ngIf="item.iconValue != null">
+                  {{ item.textValue }}
+                </div>
+              </div>
+            </div>
+  
+            <div
+              fxFlex="15"
+              fxLayout="column"
+              class="right-image"
+              *ngIf="imageRight"
+            >
+              <div
+                fxFlex
+                fxLayoutAlign="center center"
+                [ngStyle]="{
+                  'border-bottom':
+                    columnImageRight == 2 ? 'solid 1px #d8e3f0' : 'none'
+                }"
+              >
+                <img
+                  class="round fondo-primario"
+                  [src]="arrayImagesRight.img1"
+                  alt="img1"
+                  *ngIf="arrayImagesRight && arrayImagesRight.img1"
+                />
+                <mat-icon
+                  [className]="'mat-icon material-icons color-primario s-26'"
+                  *ngIf="arrayImagesRight && arrayImagesRight.icon1"
+                >
+                  {{ arrayImagesRight.icon1 }}
+                </mat-icon>
+              </div>
+              <div
+                fxFlex
+                fxLayoutAlign="center center"
+                *ngIf="columnImageRight == 2"
+              >
+                <img
+                  class="round fondo-primario"
+                  [src]="arrayImagesRight.img2"
+                  alt="img2"
+                  *ngIf="arrayImagesRight && arrayImagesRight.img2"
+                />
+                <mat-icon
+                  [className]="'mat-icon material-icons color-primario s-26'"
+                  *ngIf="arrayImagesRight && arrayImagesRight.icon2"
+                >
+                  {{ arrayImagesRight.icon2 }}
+                </mat-icon>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+  

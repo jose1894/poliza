@@ -24,11 +24,8 @@ import {
     }
   
     /** Preguntamos si la Ruta va a ser Almacenada */
-    shouldDetach(route: ActivatedRouteSnapshot): boolean {
-      // console.log(route);
-  
+    shouldDetach(route: ActivatedRouteSnapshot): boolean {  
       if (!route.routeConfig || route.routeConfig.loadChildren) {
-        // console.log('sali del shouldDetach');
         return false;
       }
       /** Whether this route should be re used or not */
@@ -81,11 +78,8 @@ import {
       ) {
         return null;
       }
-  
-      // console.log(this.handlers[this.getIdentify(route)].handle);
       return this.handlers[this.getIdentify(route)].handle;
-    }
-  
+    }  
     /** Determina si una ruta debe reutilizarse */
     shouldReuseRoute(
       before: ActivatedRouteSnapshot,

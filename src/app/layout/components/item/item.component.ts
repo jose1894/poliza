@@ -17,9 +17,13 @@ export class ItemComponent implements OnInit {
 
   constructor(private readonly _tabService: TabService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.item)
+  }
 
   public goTo() {
+    //@ts-ignore
+    //console.log(this.joinRoute(this.item.url))
     //@ts-ignore
     this._tabService.goToView(this.item.id, this.joinRoute(this.item.url));
   }

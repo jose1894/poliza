@@ -11,6 +11,7 @@ import { ModalsTemplateComponent } from './component/modals-template/modals-temp
 import { BtnConfirmDeleteComponent } from './component/btn-confirm-delete/btn-confirm-delete.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { ItemListViewComponent } from './item-list-view/item-list-view.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { RouterModule } from '@angular/router';
     CustomModalDialogComponent,
     /* Directives */
     AppRouterOutletDirective,
+    ItemListViewComponent,
   ],
   imports: [
     CommonModule,
@@ -49,6 +51,7 @@ import { RouterModule } from '@angular/router';
     BCThemeSharedModule,
     FormsModule,
     ReactiveFormsModule,
+    ItemListViewComponent,
   ],
   entryComponents: [
     ErrorModalDialogComponent,

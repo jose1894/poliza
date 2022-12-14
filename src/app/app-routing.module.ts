@@ -12,6 +12,15 @@ const routes: Routes = [
       reuseRoute: false,
     },
     canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./pages/configuration/configuration.module').then(
+            (m) => m.ConfigurationModule
+          ),
+      },
+    ],
   },
   {
     path: 'auth',

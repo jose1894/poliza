@@ -1,27 +1,20 @@
-import { Observable } from 'rxjs';
+import { Observable } from "rxjs";
 
-/*export interface BaseService {
+export interface BaseService {
   // _viewStatus$: Observable<ViewStatusRoute>;
 
   viewStatus: ViewStatusRoute;
-
-  // selectedRole: any;
-
   routePath: string;
-
-  onViewStatus();
-
+  onViewStatus(): Observable<ViewStatusRoute>;
   goToView(
     view: ViewStatusRoute,
     params: string[],
     queryParams: any,
     searchVirtualKey?: boolean
-  );
-
-  save();
-
-  delete(listDelete: any[]);
-}*/
+  ): Promise<boolean>;
+  save(): Observable<Object>;
+  delete(listDelete: any[]): Observable<boolean>;
+}
 
 export enum ViewStatusRoute {
   PROJECTLIST = 'projectlist',
