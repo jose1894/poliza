@@ -41,8 +41,6 @@ export class AuthService {
     const permission = this.userLogged.loginResultPermissions.find(
       (permission: any) => permission.readonly_permissionId === permissionId
     );
-    console.log(permission, 'permisosss')
-
     return permission;
   }
 

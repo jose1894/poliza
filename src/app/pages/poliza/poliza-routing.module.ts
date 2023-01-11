@@ -8,7 +8,7 @@ const routes: Routes = [
   {
     //@ts-ignore
     path: Routing.getRouteById('PS010101', ROUTES).url.join('/'),
-    loadChildren: () => import('./poliza/poliza.module').then((m) => m.PolizaModule),
+    loadChildren: () => import('./type-poliza/type-poliza.module').then((m) => m.TypePolizaModule),
   }
 ];
 
@@ -16,4 +16,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class ConfigurationRoutingModule {}
+export class PolizaRoutingModule {}

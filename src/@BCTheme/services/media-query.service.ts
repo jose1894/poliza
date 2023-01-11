@@ -31,7 +31,6 @@ export class MediaQueryService {
     this._mediaObserver.asObservable()
       .pipe(debounceTime(500), distinctUntilChanged())
       .subscribe((change: any) => {
-        // console.log(change);
         if (this._mediaChange.getValue() !== change.mqAlias) {
           this._mediaChange.next(change.mqAlias);
           this._isMobile.next(this._validateIsMobile(change.mqAlias));
@@ -60,7 +59,6 @@ export class MediaQueryService {
         height: innerHeight,
         width: innerWidth,
       });
-      // console.log('rotate')
       this._setPropertyDocumentVH();
     });
   }

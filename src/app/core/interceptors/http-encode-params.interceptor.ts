@@ -52,8 +52,6 @@ export class HttpEncodeParamsInterceptor implements HttpInterceptor {
       return next.handle(requestEncode);
     }
 
-    // console.log(req.clone());
-
     return next.handle(request);
   }
 }

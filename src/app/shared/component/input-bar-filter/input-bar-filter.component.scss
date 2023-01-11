@@ -1,0 +1,241 @@
+@import "src/@BCTheme/scss/BCTheme.scss";
+
+.input-bar-filter {
+  position: relative;
+
+  /* Toolbar default */
+  mat-toolbar.toolbar-tools {
+    background-color: transparent;
+    padding: 10px 15px;
+    height: 64px !important;
+
+    /* Generalizacion de container del Toolbar */
+    .mode-filter,
+    .mode-edition {
+      padding: 0 10px;
+      background-color: white;
+      width: 100%;
+      height: 100%;
+      border-radius: 5px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      @include mat-elevation(1);
+
+      /* Clase General para todas las opciones del Toolbar */
+      // .action {
+      //   color: #5b6a83;
+      // }
+    }
+
+    /* Modo de Filtro del toolbar */
+    .mode-filter {
+      &.disabled-input {
+        justify-content: flex-end;
+      }
+      /* Input de busqueda */
+      > .container-input-filter {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+
+        /* Input */
+        input.input-filter {
+          width: calc(100% - 25px);
+          padding: 0 5px;
+          color: #5b6a83;
+          font-size: 16px;
+          outline: none;
+          -webkit-appearance: none;
+          appearance: none;
+          border: none;
+
+          &::placeholder {
+            /* Chrome, Firefox, Opera, Safari 10.1+ */
+            color: #93a1b7;
+            opacity: 1; /* Firefox */
+          }
+        }
+
+        /* Boton de borrar contenido del Input */
+        button.input-clear-icon {
+          border: 0;
+          height: 25px;
+          width: 25px;
+          outline: none;
+          background-color: transparent;
+          visibility: hidden;
+          appearance: none;
+          color: #94acc8;
+          // padding: 3px !important;
+          display: none !important;
+          transition: background-color 300ms;
+          cursor: pointer;
+          border-radius: 50%;
+
+          &:hover {
+            background-color: #eee;
+          }
+        }
+
+        &.search-has-focus.search-has-value button.input-clear-icon {
+          visibility: visible;
+          margin-right: 10px !important;
+          display: flex !important;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+
+      /* Opciones del Toolbar */
+      > .container-actions-filter {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        /* Boton de Lupa */
+        // .search {
+
+        // }
+      }
+    }
+
+    /* Modo de edicion del Toolbar */
+    .mode-edition {
+      > .container-extra-actions-filter {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+      }
+    }
+  }
+
+  /* Mensajes de notificaciones */
+  .messages {
+    // padding: 10px 15px;
+
+    .messages-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding: 5px 15px;
+
+      .go-filter {
+        text-decoration: underline;
+      }
+
+      .close-message {
+        color: #5b6a83;
+      }
+    }
+  }
+
+  /* CSS del panel de Filtro */
+  .panel-extra-filter {
+    position: absolute;
+    transition: all 450ms;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    @include height-with-header();
+    background-color: #f3f3f3;
+
+    // transition: transform 1s 500ms;
+    // transform: translateX(-300px);
+
+    // &.open{
+    // transform: translateX(0);
+
+    // }
+
+    /* Toolbar del Panel de filtros */
+    mat-toolbar.toolbar-filter {
+      padding: 10px 15px;
+      height: 64px;
+
+      .toolbar-filter-content {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .toolbar-filter-title,
+        .toolbar-filter-actions {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white !important;
+        }
+
+        .toolbar-filter-title {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+        }
+
+        .toolbar-filter-actions {
+          button[mat-icon-button] mat-icon {
+            color: white;
+          }
+        }
+      }
+    }
+
+    /* Contenido del panel de Filtro */
+    .panel-extra-filter-content {
+      // height: 100%;
+      overflow: auto;
+      padding: 15px;
+      @include height-with-header(" - 64px");
+    }
+  }
+}
+
+:host(.IBF-acciona-totalized) {
+  $HEIGHT_TABS_PROJECT_ANALYSIS_ACCIONA: 50px;
+  .input-bar-filter {
+    .panel-extra-filter {
+      @include height-with-header(
+        " - #{$HEIGHT_TABS_PROJECT_ANALYSIS_ACCIONA}"
+      );
+      .panel-extra-filter-content {
+        @include height-with-header(
+          " - 64px - #{$HEIGHT_TABS_PROJECT_ANALYSIS_ACCIONA}"
+        );
+      }
+    }
+
+    &.fullsize {
+      .panel-extra-filter {
+        @include height-without-header(
+          " - #{$HEIGHT_TABS_PROJECT_ANALYSIS_ACCIONA}"
+        );
+
+        .panel-extra-filter-content {
+          @include height-without-header(
+            " - 64px - #{$HEIGHT_TABS_PROJECT_ANALYSIS_ACCIONA}"
+          );
+        }
+      }
+    }
+  }
+}
+
+.input-bar-filter.fullsize {
+  .panel-extra-filter {
+    @include height-without-header();
+
+    .panel-extra-filter-content {
+      @include height-without-header(" - 64px");
+    }
+  }
+}
+
+.filters-applied {
+  color: rgb(254, 182, 12);
+} 

@@ -8,7 +8,7 @@ import { ApiService } from 'src/app/services/api/api.service';
 @Injectable({
   providedIn: 'root'
 })
-export class PolizaService implements BaseService{
+export class TypePolizaService implements BaseService{
 
   public routePath: string = '';
 
@@ -20,6 +20,8 @@ export class PolizaService implements BaseService{
 
   private _viewStatus$: BehaviorSubject<ViewStatusRoute> =
     new BehaviorSubject<ViewStatusRoute>(ViewStatusRoute.DASHBOARD);
+
+  private _filters$: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
   constructor(
     private _apiService: ApiService,
@@ -45,9 +47,6 @@ export class PolizaService implements BaseService{
     return this._selectedPoliza$.getValue();
   }
 
-  /**
-   * Set Currency Selected
-   */
   public set selectedPoliza(poliza: any) {
     this._selectedPoliza$.next(poliza)
   }
@@ -64,11 +63,20 @@ export class PolizaService implements BaseService{
     this._selectedIndexPoliza$.next(index);
   }
 
-  /**
-   * On Change Currency index Selected
-   */
   public onSelectedIndexPoliza(): Observable<number> {
     return this._selectedIndexPoliza$.asObservable();
+  }
+
+  public get filters(): string {
+    return this._filters$.getValue();
+  }
+
+  public set filters(filters: string) {
+    this._filters$.next(filters);
+  }
+  
+  public onFilters(): Observable<string> {
+    return this._filters$.asObservable();
   }
 
   public async goToView(

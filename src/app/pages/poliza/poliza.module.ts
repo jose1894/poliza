@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ConfigurationRoutingModule } from './configuration-routing.module';
+import { PolizaRoutingModule } from './poliza-routing.module';
 
 
 
@@ -8,7 +8,7 @@ import { ConfigurationRoutingModule } from './configuration-routing.module';
   declarations: [],
   imports: [
     CommonModule,
-    ConfigurationRoutingModule
+    PolizaRoutingModule
   ]
 })
-export class ConfigurationModule { }
+export class PolizaModule { }

@@ -59,7 +59,6 @@ export class NavbarComponent
               const tabDOM = document.querySelector(
                 `[data-idtab="${selectedId}"]`
               );
-              // console.log(tabDOM);
               if (tabDOM && tabDOM.scrollIntoView) {
                 if (this.isShowScroll()) {
                   tabDOM.scrollIntoView(false);

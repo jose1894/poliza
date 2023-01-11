@@ -12,6 +12,7 @@ import { BtnConfirmDeleteComponent } from './component/btn-confirm-delete/btn-co
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ItemListViewComponent } from './item-list-view/item-list-view.component';
+import { InputBarFilterComponent } from './component/input-bar-filter/input-bar-filter.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { ItemListViewComponent } from './item-list-view/item-list-view.component
     /* Directives */
     AppRouterOutletDirective,
     ItemListViewComponent,
+    InputBarFilterComponent,
   ],
   imports: [
     CommonModule,
@@ -52,6 +54,7 @@ import { ItemListViewComponent } from './item-list-view/item-list-view.component
     FormsModule,
     ReactiveFormsModule,
     ItemListViewComponent,
+    InputBarFilterComponent
   ],
   entryComponents: [
     ErrorModalDialogComponent,

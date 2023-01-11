@@ -80,8 +80,7 @@
                         </mat-error>
                     </mat-form-field>
                     <mat-form-field>
-                        <input 
-                            
+                        <input
                             matInput 
                             [type]="hide ? 'password' : 'text'"  
                             placeholder="Password"
@@ -116,7 +115,7 @@
 
                     <div>
                         <button mat-raised-button color="primary" class="submit-button" aria-label="LOGIN"
-                        [disabled]="registerForm.invalid" (click)="login()">
+                        [disabled]="registerForm.invalid && !showLoadBar" (click)="login()">
                             Save
                         </button>
                     </div>

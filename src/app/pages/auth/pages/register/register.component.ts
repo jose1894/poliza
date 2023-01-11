@@ -1,11 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { User } from '@Core/models/user';
 import { NotifyService } from '@Core/services/notify.service';
 import { RegisterService } from '@Core/services/users/register.service';
+import { CustomModalDialogComponent } from '@Shared/component/dialog/custom-dialog/custom-dialog.component';
+import { flatMap, tap } from 'rxjs';
 import { ApiService } from 'src/app/services/api/api.service';
 import { KeyStorage, StorageService } from 'src/app/services/storage.service';
+
+const StatusEmail: object = {
+  VERIFICATION_LINK_SENT: 'verification-link-sent',
+  EMAIL_ALREADY_VERIFIED: 'Email already verified',
+  EMAIL_HAS_BEEN_VERIFIED: 'Email has been verified',
+}
 
 @Component({
   selector: 'app-register',
@@ -28,8 +37,9 @@ export class RegisterComponent implements OnInit {
   public hideCpassword: boolean = true;
 
   constructor(
-    private formBuilder: FormBuilder,
     private _router: Router,
+    private _modal: MatDialog,
+    private formBuilder: FormBuilder,
     private _apiService: ApiService,
     //private _notifyService: NotifyService,
     private _storageService: StorageService,
@@ -54,9 +64,6 @@ export class RegisterComponent implements OnInit {
       CPassword: ['', Validators.required],
       rememberUser: [true],
     });
-
-    console.log(this.registerForm)
-
     this.registerForm.valueChanges.subscribe(() => {
       this._onRegisterFormValuesChanged();
     });
@@ -100,21 +107,42 @@ export class RegisterComponent implements OnInit {
       password: password,
       c_password: CPassword,
     }
-    this._registerService.registerUsere(data).subscribe((resp: any) => {
-      const {  accessToken, user } = resp;
-      //this._notifyService.showNotification('success', message);      
-      const dataUser = this._apiService.processLogin(user);
-      console.log('register')
-      if(dataUser) {
-        this._storageService.setValue(
-          KeyStorage.TOKEN,
-          accessToken,
-          false
-        );
-        this.registerForm.reset();
-        this._router.navigate(['/']);
-      }      
-    }, error => {})
+    this.showLoadBar = true;
+    this._registerService.registerUsere(data).pipe(
+      flatMap((user) => this._registerService.verificationEmail(user.accessToken))
+    ).subscribe((resp: any) => {
+      const status = resp?.status || '';
+      if (status !== '' && Object.values(StatusEmail).includes(status)) {
+        this.openDialogMessage(status);
+      } else {
+        this.showLoadBar = false;
+      }
+    }, error => { 
+      this.showLoadBar = false;
+    })
+  }
+
+  openDialogMessage(messageChange: string) {
+    const dialogRef = this._modal.open(CustomModalDialogComponent, {
+      disableClose: true,
+      width: '300px',
+      data: {
+        type: 'info',
+        message: messageChange,
+        buttons: {
+          no: false,
+          yes: false,
+          cancel: false,
+          ok: true,
+        },
+      },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      this._storageService.setValue(KeyStorage.TOKEN, false);
+      this._storageService.setValue(KeyStorage.IS_LOGGED_IN, false);
+      this._router.navigate(['/auth/login']);
+      this.showLoadBar = false;
+    });
   }
 
 }

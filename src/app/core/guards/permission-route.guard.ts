@@ -17,7 +17,7 @@ export class PermissionRouteGuard implements CanActivate {
     private _tabService: TabService,
     private _routerActive: ActivatedRoute,
     private _routing: Routing
-  ) {console.log('787777')}
+  ) {}
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot

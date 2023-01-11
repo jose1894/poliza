@@ -3,15 +3,15 @@ import { ItemRoute } from '@Core/models/general/navigation/item-route.interface'
 export const ROUTES: ItemRoute[] = [
   {
     id: 'P01',
-    title: 'Configuration',
+    title: 'Póliza',
     type: 'collapsable',
     icon: 'settings',
     children: [
       {
         id: 'PS010101',
-        title: 'Póliza',
+        title: 'Type Poliza',
         type: 'item',
-        url: ['poliza']
+        url: ['type-poliza']
       },
     ],
   },

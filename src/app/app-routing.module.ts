@@ -16,8 +16,8 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () =>
-          import('./pages/configuration/configuration.module').then(
-            (m) => m.ConfigurationModule
+          import('./pages/poliza/poliza.module').then(
+            (m) => m.PolizaModule
           ),
       },
     ],

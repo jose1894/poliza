@@ -1,16 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PolizaComponent } from './page/poliza.component';
-import { PolizaRoutingModule } from './poliza-routing.module';
+import { TypePolizaComponent } from './page/type-poliza.component';
 import { SharedModule } from '@Shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TypePolizaRoutingModule } from './type-poliza-routing.module';
+import { TypeListEditComponent } from './components/type-list-edit/type-list-edit.component';
 
 
 
 @NgModule({
   declarations: [
-    PolizaComponent
+    TypePolizaComponent,
+    TypeListEditComponent
   ],
   imports: [
     CommonModule,
@@ -18,7 +20,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    PolizaRoutingModule
+    TypePolizaRoutingModule
   ]
 })
-export class PolizaModule { }
+export class TypePolizaModule { }

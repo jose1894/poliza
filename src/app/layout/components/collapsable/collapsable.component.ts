@@ -45,9 +45,7 @@ export class CollapsableComponent implements OnInit {
    */
   constructor(private _changeDetectorRef: ChangeDetectorRef) {}
 
-  ngOnInit(): void {
-    //console.log(this.item)
-  }
+  ngOnInit(): void {}
 
   toggleOpen(ev: any): void {
     ev.preventDefault();

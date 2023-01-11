@@ -111,7 +111,6 @@ export class ApiService {
     if (this._authService.isLoggedIn) {
       return of(true);
     } else if (this._storageService.getValue(KeyStorage.TOKEN)) {
-      console.log('storage')
       //return of(true);
       return this.loginByApiKey().pipe(
         map((isLogin: boolean) =>
@@ -138,9 +137,8 @@ export class ApiService {
   }
 
   public loginByApiKey(): Observable<boolean> {
-    return this.get('auth/profile').pipe(
+    return this.get('/auth/profile').pipe(
       map((res: any) => {
-        console.log(this.processLogin(res))
         return this.processLogin(res);
       })
     );

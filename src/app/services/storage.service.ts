@@ -59,4 +59,5 @@ export enum KeyStorage {
   TOKEN = 'token',
   IS_LOGGED_IN = 'is_logged_in',
   IS_SHOW_CHAT = 'is_show_chat',
+  IS_EMAIL_RESET_PASSWORD = 'is_email_reset_password',
 }

@@ -27,7 +27,6 @@ export class NetworkService {
    */
   public init() {
     this._isOnline$.subscribe((value) => {
-    //   console.log(value);
       this._connectionStatus = value
         ? StatusConnection.ONLINE
         : StatusConnection.OFFLINE;

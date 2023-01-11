@@ -51,10 +51,6 @@ export class LayoutService {
           this._isUnfoldedSidenav.next(false);
         }
       });
-    // if (this._mediaQueryService.isMediaMobile) {
-    //   console.log('isMobile')
-    //   this._isOpenSidenav$.next(false);
-    // }
   }
 
   public get isUnfoldedSidenav() {

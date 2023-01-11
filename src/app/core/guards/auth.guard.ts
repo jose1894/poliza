@@ -9,7 +9,7 @@ import { ApiService } from 'src/app/services/api/api.service';
 export class AuthGuard implements CanActivate {
   constructor(
     private _apiService: ApiService,
-  ) {console.log('guardn')}
+  ) {}
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot

@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PolizaService } from './poliza.service';
+import { TypePolizaService } from './type-poliza.service';
 
 describe('PolizaService', () => {
-  let service: PolizaService;
+  let service: TypePolizaService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(PolizaService);
+    service = TestBed.inject(TypePolizaService);
   });
 
   it('should be created', () => {

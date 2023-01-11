@@ -1,0 +1,111 @@
+<div class="type-poliza-edit-page" *ngIf="typePoliza">
+    <div class="type-poliza-edit-container">
+
+        <div class="toolbar-edit-actions-buttons">
+            <mat-toolbar class="toolbar-action-buttons">
+                <div 
+                    class="toolbar-action-buttons-container" 
+                    fxLayoutAlign="space-between center" 
+                    fxLayout="row">
+                    <div fxLayoutAlign="row">
+                        <button 
+                            class="button-action-poliza"
+                            mat-icon-button
+                            [matTooltip]="'Save'">
+                            <div class="spin-content" [ngClass]="{ 'active-spin': isSave }">
+                                <mat-icon class="notranslate icon-default">check</mat-icon>
+                                <mat-icon class="notranslate icon-spin icon-hover"
+                                  >autorenew</mat-icon
+                                >
+                            </div>
+                        </button>
+
+                        <button
+                            class="button-action-poliza"
+                            mat-icon-button
+                            [matTooltip]="'Refresh'">
+                            <div
+                                class="icons spin-content"
+                                [ngClass]="{ 'active-spin': isRefresh }">
+                                <mat-icon class="notranslate icon-default">refresh</mat-icon>
+                                <mat-icon class="notranslate icon-spin icon-hover"
+                                >autorenew</mat-icon>
+                            </div>
+                        </button>
+
+                        <button 
+                            mat-icon-button
+                            [matTooltip]="'New'">
+                                <mat-icon class="notranslate">add_circle</mat-icon>
+                        </button>
+                    </div>
+
+                    <div>
+                        <button
+                          mat-icon-button
+                          [matTooltip]="'Close'">
+                            <mat-icon class="notranslate">close</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </mat-toolbar>
+        </div>
+
+        <div class="type-poliza-edit-content">
+            <div 
+                class="entity-header fondo-primario"
+                fxLayout="row"
+                fxLayoutAlign="space-between center">
+                <span class="title">{{ typePoliza.descripcion }}</span>
+            </div>
+
+            <div id="contenido-type-poliza-edit"
+                 class="tab"
+                [ngClass]="{ 'full-size': scrollHiddenToolbar$ | async }"
+                #container> 
+                <div
+                    class="scroll-content"
+                    appScrollHiddenHeader
+                    appSelectTextAutomatically>
+
+                    <div fxLayout="column" fxLayout.gt-sm="row">
+                        <div
+                            fxLayout="column"
+                            fxFlex="100"
+                            fxFlex.xs="100"
+                            class="padding-content-box">
+                            <mat-card class="full-height">
+                                <mat-card-content>
+                                    <div fxLayout ="row">
+                                        <div fxFlex="100">
+                                            <mat-form-field class="ancho-code">
+                                                <input
+                                                  #descripcion
+                                                  autocomplete="off"
+                                                  matInput
+                                                  [placeholder]="'Description'"
+                                                  name="description"/>
+                                                <!-- <mat-hint>
+                                                  <show-errors
+                                                    [control]="formControlTax.controls.code"
+                                                    [data]="tax"
+                                                    [dataResSave]="dataResSave"
+                                                    [fieldSave]="'code'"
+                                                  >
+                                                  </show-errors>
+                                                </mat-hint> -->
+                                              </mat-form-field>
+                                        </div>
+                                    </div>
+                                </mat-card-content>
+                            </mat-card>
+                        </div>
+                    </div>
+                </div>
+            
+            </div>
+
+        </div>
+
+    </div>
+</div>

@@ -45,7 +45,6 @@ export class SidenavComponent implements OnInit {
       this.forceFolded = isUnfolded;
     });
     this._routing.onGetRoutesWithPermissions().subscribe((navigation) => {
-      console.log(navigation)
       this.navigation = navigation;
     });
   }
@@ -66,15 +65,12 @@ export class SidenavComponent implements OnInit {
     if (!this.forceFolded) {
       this.isHover = false;
     }
-    // this._layoutService.siden
-    // console.log('out aside');
   }
 
   public onMouseEnterAside(): void {
     if (!this.forceFolded) {
       this.isHover = true;
     }
-    // console.log('enter aside');
   }
 
   public closeSidenav(): void {

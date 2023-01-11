@@ -57,7 +57,6 @@ export class ThemeService {
   }
 
   private _setThemeBody(themeName: string) {
-    // console.log(theme)
     const overlayContainerClasses = this._window.document.body.classList;
     const themeClassesToRemove = Array.from(
       overlayContainerClasses

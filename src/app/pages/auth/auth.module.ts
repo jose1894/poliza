@@ -6,13 +6,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@Shared/shared.module';
 import { RegisterComponent } from './pages/register/register.component';
 import { BCThemeSharedModule } from '@BCTheme/shared.module';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
 @NgModule({
   declarations: [
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ResetPasswordComponent
   ],
   imports: [
     CommonModule,
@@ -21,6 +24,7 @@ import { BCThemeSharedModule } from '@BCTheme/shared.module';
     AuthRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    MatIconModule
   ]
 })
 export class AuthModule { }

@@ -46,9 +46,6 @@ export class TabService {
   ) {
     /* Inicializo el arreglo con la ruta con la que arranco */
     this.create(this._window.location.pathname);
-
-    // console.log(this._router.routerState);
-
     /** Comentado por pruebas */
     this._locationStrategy.onPopState(() => {
       //@ts-ignore
@@ -128,9 +125,6 @@ export class TabService {
    * removen
    */
   public async remove(id: string) {
-    // console.log(this._applicationRef.components);
-    // let tabs = this._tabs$.getValue();
-
     /* Obttengo el index y el objeto Tab del tab a eliminar */
     let tabDelete: { index: number; tab: TabNavigation } =
       this.getTabDelete(id);
@@ -138,7 +132,6 @@ export class TabService {
     /* Se verifica que se puede eliminar el tab */
     let canDelete: boolean = true || undefined;
 
-    //console.log(tabDelete);
     if (
       tabDelete.tab.changesEdit.saveOnExit &&
       tabDelete.tab.changesEdit.haveChangesPending
@@ -257,7 +250,6 @@ export class TabService {
       ROUTES,
       pathURL
     );
-    //console.log(itemNavigation)
     if (pathURL === '/') {
       return;
     }

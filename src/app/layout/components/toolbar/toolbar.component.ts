@@ -111,9 +111,7 @@ export class ToolbarComponent implements OnInit {
         },
       });
   
-      dialogRef.afterClosed().subscribe((result) => {
-        //console.log(result);
-      })
+      dialogRef.afterClosed().subscribe((result) => {})
     }    
   }
 
