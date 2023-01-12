@@ -9,6 +9,7 @@ import { TypePolizaService } from '@Core/services/poliza/type-poliza.service';
 import { ImageDefaultService } from '@Core/services/image-default.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NetworkService, StatusConnection } from '@Core/services/network.service';
+import { ActivatedRoute, Params } from '@angular/router';
 
 
 @Component({
@@ -43,8 +44,9 @@ export class TypePolizaComponent implements OnInit {
     private _authService: AuthService,
     private _formBuilder: FormBuilder,
     private _layoutService: LayoutService,
-    private _typePolizaService: TypePolizaService,
     private _networkService: NetworkService,
+    private _activatedRouter: ActivatedRoute,
+    private _typePolizaService: TypePolizaService,
     private _imageDefaultService: ImageDefaultService
   ) {
     this.scrollHiddenToolbar$ = this._layoutService.onHiddenToolbar();
@@ -55,7 +57,16 @@ export class TypePolizaComponent implements OnInit {
 
     this.formPoliza = this._formBuilder.group({
         searchText: [''],
-      });
+    });
+
+    this._activatedRouter.children.forEach((router) => {
+      router.params
+        .subscribe(async (params: Params) => {
+          //@ts-ignore
+          this.startScreen(params?.id);
+        })
+        .unsubscribe();
+    });
   }
 
   ngOnInit(): void {
@@ -177,6 +188,36 @@ export class TypePolizaComponent implements OnInit {
           this._changeDetectorRef.detectChanges();
         }
       });*/
+  }
+
+  public startScreen(paramId: string): void {
+    const currentUrl: string = window.location.pathname;
+    if (currentUrl.search('/edit') !== -1) {
+      this._typePolizaService.getTypePolizaById(paramId).subscribe((data: any) => {
+        console.log(data)
+        if(data.status === 'ok') {
+          this._typePolizaService.selectedTypePoliza = data.data;
+          this._typePolizaService.goToView(ViewStatusRoute.EDIT, [paramId]);
+
+        }
+        console.log(data)
+
+      })
+      /*this.isSearching = true;
+      this._taxService
+        .getTaxById(paramId)
+        .toPromise()
+        .then((tax: Tax) => {
+          this._taxService.selectedTax = tax;
+
+          this._taxService.goToView(ViewStatusRoute.EDIT, [paramId]);
+
+          this._showSelect();
+          this._stopSpinner();
+        });*/
+    } else if (currentUrl.search('/add') !== -1) {
+      this._typePolizaService.goToView(ViewStatusRoute.ADD);
+    }
   }
 
   onCleanBarSearch(): void {

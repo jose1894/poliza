@@ -11,7 +11,9 @@
                         <button 
                             class="button-action-poliza"
                             mat-icon-button
-                            [matTooltip]="'Save'">
+                            [matTooltip]="'Save'"
+                            [disabled]="formControlTypePoliza.invalid"
+                            (click)="saveTypePoliza()">
                             <div class="spin-content" [ngClass]="{ 'active-spin': isSave }">
                                 <mat-icon class="notranslate icon-default">check</mat-icon>
                                 <mat-icon class="notranslate icon-spin icon-hover"
@@ -33,11 +35,11 @@
                             </div>
                         </button>
 
-                        <button 
+                        <!-- <button 
                             mat-icon-button
                             [matTooltip]="'New'">
                                 <mat-icon class="notranslate">add_circle</mat-icon>
-                        </button>
+                        </button> -->
                     </div>
 
                     <div>
@@ -56,7 +58,7 @@
                 class="entity-header fondo-primario"
                 fxLayout="row"
                 fxLayoutAlign="space-between center">
-                <span class="title">{{ typePoliza.descripcion }}</span>
+                <span class="title">{{ typePoliza.descripcion  }}</span>
             </div>
 
             <div id="contenido-type-poliza-edit"
@@ -74,26 +76,23 @@
                             fxFlex="100"
                             fxFlex.xs="100"
                             class="padding-content-box">
-                            <mat-card class="full-height">
+                            <mat-card class="full-height" [formGroup]="formControlTypePoliza">
                                 <mat-card-content>
                                     <div fxLayout ="row">
                                         <div fxFlex="100">
-                                            <mat-form-field class="ancho-code">
+                                            <mat-form-field class="ancho-code" fxFlex="100">
                                                 <input
                                                   #descripcion
                                                   autocomplete="off"
                                                   matInput
                                                   [placeholder]="'Description'"
-                                                  name="description"/>
-                                                <!-- <mat-hint>
-                                                  <show-errors
-                                                    [control]="formControlTax.controls.code"
-                                                    [data]="tax"
-                                                    [dataResSave]="dataResSave"
-                                                    [fieldSave]="'code'"
-                                                  >
-                                                  </show-errors>
-                                                </mat-hint> -->
+                                                  name="descripcion"
+                                                  formControlName="descripcion"
+                                                  (keyup)="changeInput($event, 'descripcion')"/>
+                                                  
+                                                <mat-hint>
+                                                    <mat-error >{{getErrorMessage('descripcion')}}</mat-error>
+                                                </mat-hint>
                                               </mat-form-field>
                                         </div>
                                     </div>

@@ -12,7 +12,7 @@ export interface BaseService {
     queryParams: any,
     searchVirtualKey?: boolean
   ): Promise<boolean>;
-  save(): Observable<Object>;
+  save(data?:any): Observable<Object>;
   delete(listDelete: any[]): Observable<boolean>;
 }
 

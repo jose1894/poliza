@@ -18,6 +18,11 @@ const routes: Routes = [
       canActivate: [AuthGuard, PermissionRouteGuard],
       children: [
         {
+          path: 'edit/:id',
+          component: TypeListEditComponent,
+          // canActivate: [AuthGuard],
+        },
+        {
           path: 'add',
           component: TypeListEditComponent,
           data: { method: 'add' },

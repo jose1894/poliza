@@ -32,12 +32,13 @@ export class HttpTokenUserInterceptor implements HttpInterceptor {
 
   private _createAuthorizationHeader(): HttpHeaders {
     let token: string = '';
-    if (this._authService.userLogged != null) {
+    token = this._storageService.getValue(KeyStorage.TOKEN, false);
+    /*if (this._authService.userLogged != null) {
       token = this._authService.userLogged.readonly_apiKey;
     } else {
-      token = this._storageService.getValue(KeyStorage.TOKEN, false);
-      // token = Crypto.decrypt(tokenEncrypted);
-    }
+      token = Crypto.decrypt(tokenEncrypted);
+    }*/
+    console.log(token)
 
     if (token !== '') {
       return new HttpHeaders().set('Authorization', 'Bearer ' + token);

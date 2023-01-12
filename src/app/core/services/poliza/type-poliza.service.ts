@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BaseService, ViewStatusRoute } from '@Core/interfaces/base-service.interface';
+import { TypePolizaInterface } from '@Core/models/poliza/type-poliza';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { Routing } from 'src/app/app.routing';
 import { ApiService } from 'src/app/services/api/api.service';
@@ -12,7 +13,7 @@ export class TypePolizaService implements BaseService{
 
   public routePath: string = '';
 
-  private _selectedPoliza$: BehaviorSubject<any> =
+  private _selectedTypePoliza$: BehaviorSubject<any> =
     new BehaviorSubject<any>(null);
   
   private _selectedIndexPoliza$: BehaviorSubject<number> =
@@ -43,16 +44,16 @@ export class TypePolizaService implements BaseService{
     return this._viewStatus$.asObservable();
   }
 
-  public get selectedPoliza(): any {
-    return this._selectedPoliza$.getValue();
+  public get selectedTypePoliza(): any {
+    return this._selectedTypePoliza$.getValue();
   }
 
-  public set selectedPoliza(poliza: any) {
-    this._selectedPoliza$.next(poliza)
+  public set selectedTypePoliza(poliza: any) {
+    this._selectedTypePoliza$.next(poliza)
   }
 
-  public onSelectedPoliza(): Observable<any> {
-    return this._selectedPoliza$.asObservable();
+  public onSelectedTypePoliza(): Observable<any> {
+    return this._selectedTypePoliza$.asObservable();
   }
 
   public get selectedIndexPoliza(): number {
@@ -85,12 +86,13 @@ export class TypePolizaService implements BaseService{
     queryParams: any = {}
   ): Promise<boolean> {
     this.viewStatus = view;
+    console.log(view)
     let resultNav: boolean = false;
     if (view === ViewStatusRoute.DASHBOARD) {
       resultNav = await this._router.navigate([this.routePath], {
         queryParams,
       });
-      this.selectedPoliza = null;
+      this.selectedTypePoliza = null;
       this.selectedIndexPoliza = -1;
     } else if (view === ViewStatusRoute.ADD) {
       resultNav = await this._router.navigate([this.routePath, 'add'], {
@@ -113,10 +115,19 @@ export class TypePolizaService implements BaseService{
     // debugger;
   }
 
-  save(): Observable<any> {
-    const body = {}
-    return this._apiService.post('/Configurations/Currency/save', body);
+  save(data: TypePolizaInterface): Observable<any> {
+    return this._apiService.post('/tipo-poliza', data).pipe(
+      map((resp: any) => resp.data)
+    );
   }
+
+  update(data: TypePolizaInterface, id: string): Observable<any> {
+    return this._apiService.put(`/tipo-poliza/${id}`, data)
+  }
+
+  getTypePolizaById(id: string): Observable<any> {
+    return this._apiService.get(`/tipo-poliza/${id}`, {})
+  } 
   delete(listDelete: any[]): Observable<boolean>{
     let currency:[] = []
     return this._apiService
