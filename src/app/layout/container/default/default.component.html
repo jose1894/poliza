@@ -1,0 +1,38 @@
+<div
+  class="layout_default"
+  [ngClass]="{
+    fullsize: (scrollHiddenToolbar$ | async),
+    'open-gallery': (isOpenGallery$ | async),
+    'unfolded-sidenav':(isUnfoldedSidenav$ | async)
+  }"
+>
+  <!-- Toolbar -->
+  <div class="toolbar" *ngIf="!(scrollHiddenToolbar$ | async)">
+    <app-toolbar></app-toolbar>
+  </div>
+
+  <!-- Navbar (Tabs) -->
+  <div
+    class="tabs"
+    *ngIf="!(scrollHiddenToolbar$ | async)"
+    (click)="closeSidenav()"
+  >
+    <app-navbar></app-navbar>
+  </div>
+
+  <!-- Sidenav (Barra Lateral) -->
+  <div
+    class="sidenav"
+    [ngClass]="{ 'open-sidenav': isOpenSidenavMobile$ | async }"
+  >
+    <app-sidenav></app-sidenav>
+  </div>
+
+  <!-- Content (Vista) -->
+  <div class="content" (click)="closeSidenav()">
+    <static-router-outlet></static-router-outlet>
+  </div>
+
+  <!-- Fab-Button -->
+  <app-button-up-scroll></app-button-up-scroll>
+</div>

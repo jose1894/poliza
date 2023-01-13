@@ -1,0 +1,43 @@
+<aside
+  [ngClass]="isUnfolded ? 'unfolded' : 'folded'"
+  (mouseenter)="onMouseEnterAside()"
+  (mouseleave)="onMouseLeaveAside()"
+>
+  <mat-toolbar color="primary">
+    <div class="brand">
+      <!-- <img
+        class="brand-logo not-selected"
+        src="/assets/images/logos/brickcontrol.png"
+      /> -->
+      <span class="notranslate brand-name not-selected">Poliza</span>
+    </div>
+
+    <button
+      mat-icon-button
+      class="toggle-sidebar-folded"
+      (click)="toggleSidebarFolded()"
+      fxHide.lt-lg
+    >
+      <mat-icon class="notranslate">menu</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      class="toggle-sidebar-opened"
+      (click)="closeSidenav()"
+      fxHide.gt-md
+    >
+      <mat-icon class="notranslate">arrow_back</mat-icon>
+    </button>
+  </mat-toolbar>
+  <div class="menu">
+    <app-navigation 
+        [navigation]="navigation" 
+        [ngClass]="isUnfolded ? 'unfolded' : 'folded'">
+    </app-navigation>
+  </div>
+  <!-- <div class="version" *ngIf="isUnfolded">
+    <span>{{ version }}</span>
+  </div> -->
+</aside>
+<!-- </div> -->
+
