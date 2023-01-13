@@ -56,15 +56,15 @@ export class TypeListEditComponent implements OnInit {
     if (this._typePolizaService.viewStatus === ViewStatusRoute.ADD) {
       this._typePolizaService.save(this.formControlTypePoliza.value).subscribe((data: TypePolizaInterface) => {
         const message = 'Save successfully';
-        this._notifyService.showNotification(type, message);
         //@ts-ignore
         this._goToView(type, message, data.id);
+        this._typePolizaService.selectedTypePoliza = data;
       }, error => { console.log(error) })
     } else {
       const message = 'Update successfully';
       this._typePolizaService.update(this.formControlTypePoliza.value, id).subscribe((resp:any) => {
         const { status, data } = resp;
-        if(status === 'ok') {
+        if(status === 'ok') {          
          this._goToView(type, message, data.id);
         }
       });
@@ -73,8 +73,7 @@ export class TypeListEditComponent implements OnInit {
 
   _goToView(type: string, message: string, id: string)  {
     this._notifyService.showNotification(type, message);
-      //@ts-ignore
-    this._typePolizaService.goToView(ViewStatusRoute.EDIT, [data.id]);
+    this._typePolizaService.goToView(ViewStatusRoute.EDIT, [id]);
   }
 
   public changeInput(evt: KeyboardEvent, key: string): void {

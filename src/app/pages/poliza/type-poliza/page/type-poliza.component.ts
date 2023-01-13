@@ -230,6 +230,7 @@ export class TypePolizaComponent implements OnInit {
   }
 
   onAddTypePoliza() {
+    this._typePolizaService.selectedTypePoliza = null;
     this._typePolizaService.goToView(ViewStatusRoute.ADD)
   }
 
