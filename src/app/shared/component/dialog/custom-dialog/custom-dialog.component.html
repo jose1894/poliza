@@ -1,0 +1,55 @@
+<div class="custom-dialog">
+    <div mat-dialog-content>
+        <div fxLayout="row" fxFlex  class="pt-10 pb-10">
+
+            <div fxFlex="100px" fxLayout="column" fxLayoutAlign="center center" style="height:100px">
+                <mat-icon class="notranslate s-70">{{getIcon(data.type)}}</mat-icon>
+            </div>
+            <div *ngIf="!data?.check" fxFlex fxLayout="row" fxLayoutAlign="start center" class="contenido">
+                {{data.message}}
+            </div>
+            <div *ngIf="data?.check" fxFlex fxLayout="row" fxLayoutAlign="start center" class="contenido">
+                <div>
+                    <!-- <mat-checkbox 
+                        [(ngModel)]="check" 
+                        fxFlex="38px" 
+                        fxLayout="column" 
+                        fxLayoutAlign="center center" 
+                        style="height:22px">
+                    </mat-checkbox> -->
+                    <label>{{data.message}}</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div mat-dialog-actions class="pt-10 pb-20" fxLayout="row" fxLayoutAlign="end">
+        <button 
+            mat-raised-button color="primary" 
+            (click)="close('yes')" 
+            *ngIf="data.buttons.yes" 
+            [disabled]="data?.check ? !check : false">
+            {{data.buttons.positive}}
+        </button>
+        <button 
+            mat-raised-button 
+            color="primary" 
+            (click)="close('no')" 
+            *ngIf="data.buttons.no">
+            {{data.buttons.negative}}
+        </button>
+        <button 
+            mat-raised-button 
+            color="primary" 
+            (click)="close('cancel')" 
+            *ngIf="data.buttons.cancel">
+                'Cancel'
+        </button>
+        <button 
+            mat-raised-button 
+            color="primary" 
+            (click)="close('ok')" 
+            *ngIf="data.buttons.ok">
+                Ok
+        </button>
+    </div>
+</div>

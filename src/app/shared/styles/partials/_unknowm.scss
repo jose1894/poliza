@@ -1,0 +1,59 @@
+$text-color: #5b6a83;
+$icon-color: #5b6a83;
+$secundary-color: #93a1b7;
+$secundary-icon: #93a1b7;
+
+a {
+  color: #5b6a83 !important;
+}
+
+
+
+.icon-color-principal {
+  color: $icon-color !important;
+}
+
+.text-color-principal {
+  color: $text-color !important;
+}
+
+.icon-color-secundary {
+  color: $secundary-icon !important;
+}
+.icon-color-secundary-email {
+  /* para listview de contactos*/
+  margin-top: 15px;
+  color: $secundary-icon !important;
+}
+
+.text-color-secundary {
+  color: $secundary-color !important;
+}
+
+.nav .nav-item .nav-link.active {
+  background-color: #d7d7d7;
+}
+.mat-menu-panel.select-language {
+  max-height: 300px;
+}
+
+.circulo {
+  background-color: #93a1b7 !important;
+  border-radius: 50%;
+  height: 70px;
+  width: 70px;
+  min-width: 70px;
+  max-width: 70px !important;
+
+  mat-icon {
+    color: #fff !important;
+    height: auto !important;
+    width: auto !important;
+    min-height: auto !important;
+    min-width: auto !important;
+  }
+}
+
+.autocomplete-direction {
+  min-width: 270px !important;
+}

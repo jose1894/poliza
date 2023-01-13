@@ -1,0 +1,22 @@
+<div class="custom-dialog">
+    <div mat-dialog-content>
+        <div fxLayout="row" fxFlex  class="pt-10 pb-10">
+
+            <div fxFlex="100px" fxLayout="column" fxLayoutAlign="center center" style="height:100px">
+                <mat-icon class="notranslate s-70">error_outline</mat-icon>
+            </div>
+            <div fxFlex fxLayout="row" fxLayoutAlign="start center" class="contenido">
+                {{data.message}}
+            </div>
+
+        </div>
+    </div>
+    <div mat-dialog-actions class="pt-10 pb-20" fxLayout="row" fxLayoutAlign="end">
+        <button 
+            mat-raised-button 
+            color="primary" 
+            (click)="dialogRef.close(true)"> 
+            Ok 
+        </button>
+    </div>
+</div>

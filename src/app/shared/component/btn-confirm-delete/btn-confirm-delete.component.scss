@@ -1,0 +1,85 @@
+@import "src/@BCTheme/scss/BCTheme.scss";
+$COLOR_WARNING_DELETE: rgb(254, 182, 12);
+$COLOR_CONSTRAST: white;
+:host-context(.white-icons) {
+  .base-delete-icon {
+    color: white !important;
+  }
+}
+
+.toast-delete-confirm {
+  position: fixed;
+  right: 20px;
+  background-color: $COLOR_WARNING_DELETE;
+  z-index: 9999;
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 15px;
+  @include mat-elevation(2);
+  border-radius: 4px;
+
+  .toast-delete-confirm-container {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    color: $COLOR_CONSTRAST;
+
+    .icon-type {
+      color: inherit;
+    }
+
+    .message {
+      // width: 100%;
+      overflow: hidden;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 20px;
+      /* width: fit-content; */
+      color: inherit;
+      /* flex: 2; */
+      padding: 0 10px;
+      /* width: 50px; */
+      /* overflow: hidden; */
+      white-space: break-spaces;
+      /* text-align: center; */
+      /* overflow: hidden; */
+      /* flex: 0 0 77px; */
+      margin: 0;
+    }
+
+    .icon-close {
+      color: inherit;
+      font-size: 20px;
+      height: 20px;
+      width: 20px;
+      line-height: 20px;
+      transition: color 600ms;
+
+      &:hover {
+        cursor: pointer;
+        color: #da0000;
+      }
+    }
+  }
+
+  .action-buttons {
+    width: 100%;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    .button-confirm {
+      font-weight: 600;
+
+      background-color: $COLOR_CONSTRAST;
+      color: $COLOR_WARNING_DELETE;
+    }
+  }
+}
+
+.confirm-delete-icon {
+  color: $COLOR_WARNING_DELETE;
+}

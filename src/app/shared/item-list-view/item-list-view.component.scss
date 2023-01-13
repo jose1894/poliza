@@ -1,0 +1,232 @@
+#item-listview {
+    padding: 0px;
+    overflow: hidden;
+    border-radius: 5px;
+  
+    &:hover {
+      background-color: #e8eef8;
+      cursor: pointer;
+    }
+  
+    .card-inner {
+      width: 100%;
+      // border: 1px solid #d8e3f0;
+  
+      .left-wrapper {
+        border-right: 1px solid #d8e3f0;
+  
+        .image-wrapper {
+          border-bottom: 1px solid #d8e3f0;
+  
+          img {
+            border-radius: 100%;
+          }
+        }
+  
+        .code-wrapper {
+          font-family: Myriad-Pro;
+          font-size: 11pt;
+          max-height: 20%;
+          color: #5b6a83;
+        }
+      }
+  
+      .right-wrapper {
+        .name {
+          font-size: 12pt;
+          border-bottom: 1px solid #d8e3f0;
+          color: #ff5100;
+          font-family: "Myriad Pro";
+          font-weight: bold;
+          padding-left: 15px;
+          line-height: normal;
+          padding-top: 10px;
+          padding-bottom: 10px;
+          white-space: nowrap;
+          //line-height: 40px;
+        }
+  
+        .extra {
+          color: #5b6a83;
+          padding: 10px 10px;
+  
+          .item {
+            line-height: 20px;
+          }
+  
+          mat-icon {
+            color: #94acc8;
+            font-size: 18px;
+          }
+        }
+      }
+  
+      .right-image {
+        border-left: 1px solid #d8e3f0;
+      }
+  
+      .round {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        /*background: #eee;*/
+      }
+    }
+  
+    @media (max-width: 320px) {
+      .left-wrapper {
+        display: none !important;
+      }
+  
+      .right-wrapper {
+        max-width: 100% !important;
+        width: 100% !important;
+      }
+    }
+  
+    .styleImageFormat1 {
+      width: 60px;
+      height: 60px;
+      margin: auto;
+    }
+  
+    .styleImageFormat2 {
+      width: 55px;
+      height: 55px;
+      margin: auto;
+    }
+  
+    .styleImageFormat3 {
+      width: 50px;
+      height: 50px;
+      margin: auto;
+    }
+  
+    .formato1 {
+      padding: 17px 5px;
+    }
+  
+    .formato3 {
+      padding: 10px 5px 0px;
+    }
+  
+    .altFormat3 {
+      padding-top: 4px;
+    }
+  
+    .bubble_chart {
+      margin-right: 0px !important;
+    }
+  
+    .bubble_chart mat-icon {
+      font-size: 30px !important;
+      height: 30px !important;
+      width: 30px !important;
+      color: #fff !important;
+      vertical-align: middle !important;
+    }
+  }
+  
+  .flip-container {
+    -webkit-perspective: 1000;
+    -moz-perspective: 1000;
+    -o-perspective: 1000;
+    perspective: 1000;
+  
+    border: none;
+  }
+  
+  .flip-container.selected .flipper {
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+  }
+  
+  .flip-container,
+  .front,
+  .back {
+    width: 60px;
+    height: 60px;
+    background: transparent;
+  }
+  
+  .flipper {
+    -webkit-transition: 0.6s;
+    -webkit-transform-style: preserve-3d;
+  
+    -moz-transition: 0.6s;
+    -moz-transform-style: preserve-3d;
+  
+    -o-transition: 0.6s;
+    -o-transform-style: preserve-3d;
+  
+    transition: 0.6s;
+    transform-style: preserve-3d;
+  
+    position: relative;
+  }
+  
+  .front,
+  .back {
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    backface-visibility: hidden;
+  
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  .front {
+    background: transparent;
+    // z-index: 2;
+  }
+  
+  .back {
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+    border-radius: 100%;
+    background: #ff5722;
+  }
+  
+  .back-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  
+    mat-icon {
+      font-size: 30px;
+      height: 30px;
+      width: 30px;
+      color: #fff;
+    }
+  }
+  
+  .backFormat3 {
+    height: 50px;
+    width: 50px;
+    margin-top: 4px;
+    margin-left: 8px;
+  }
+  
+  .background-success {
+    background-color: #8bc34a !important;
+  }
+  
+  .background-warning {
+    background-color: #FFC107 !important;
+  }
+  
+  .background-error {
+    background-color: #f44336 !important;
+  }
+  
+  .background-blue {
+    background-color: #2196f3 !important;
+  }
+  
