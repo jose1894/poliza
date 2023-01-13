@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { LayoutService } from '@BCTheme/services/layout.service';
 import { ViewStatusRoute } from '@Core/interfaces/base-service.interface';
 import { TypePolizaInterface } from '@Core/models/poliza/type-poliza';
@@ -22,6 +23,7 @@ export class TypeListEditComponent implements OnInit {
   public scrollHiddenToolbar$: Observable<boolean>;
 
   constructor(
+    private _router: Router,
     private _formBuilder: FormBuilder,
     private _layoutService: LayoutService,
     private _notifyService: NotifyService,
@@ -97,6 +99,12 @@ export class TypeListEditComponent implements OnInit {
       return 'You must enter a value';
     }
     return this.formControlTypePoliza.controls[key].hasError('email') ? 'Not a valid email' : '';
+  }
+
+  close() {
+    this._router.navigate(['/type-poliza'])
+    
+
   }
 
 }
